@@ -1,10 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Aug 18 19:14:28 2018
-
-@author: Lea
-"""
-import decision_tree_solution as dt  # shem kovez.py she zarih leyazer decision tree, ve az efshar lehishtamesh be functon
+import decision_tree_solution as dt  
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -26,7 +20,7 @@ def subsample_create(dataset):
     num_rows = dataset.shape[0]
     num_rows_to_choose = math.sqrt(num_rows)
     rows_to_choose = range(num_rows)
-    rows_indexing = np.random.choice(rows_to_choose,num_rows_to_choose) # (mieifo array, kama livhor) ze taut ki bli hazara
+    rows_indexing = np.random.choice(rows_to_choose,num_rows_to_choose) 
     mini_dataset = dataset[rows_indexing,:]
     return mini_dataset
 #2
@@ -36,7 +30,7 @@ def get_best_split(dataset):
     best_gini = 999
     features_available = range(num_columns-1)
     num_features_choosing = math.sqrt(num_columns)
-    features_to_search = np.random.choice(features_available,num_features_choosing)  # (mieifo array, kama livhor)
+    features_to_search = np.random.choice(features_available,num_features_choosing)  
     for feature_index in features_to_search:
         for row_num in range(num_rows):
             left,right = dt.split_one_node(dataset,feature_index,dataset[row_num,feature_index])
@@ -52,8 +46,8 @@ def get_best_split(dataset):
 #3
 def random_forests(dataset,n=5):
     trees_list = []
-    for i in range(n):                 # metazrim  ezim
-        root = dt.Node(dataset,0)      # thilat ez
+    for i in range(n):                 
+        root = dt.Node(dataset,0)      
         root.split_node_recursively()
         trees_list.append(root)
     return trees_list
@@ -61,10 +55,10 @@ def random_forests(dataset,n=5):
 #4
 def bagging_predict(trees_list,data_row):
     all_labels = []
-    for tree in trees_list:               # overet al kol ezim row test
+    for tree in trees_list:               
         label = tree.predict(data_row)
         all_labels.append(label)
-    num_zeros = all_labels.count(0)      # majority vote bein kol ezim for row test
+    num_zeros = all_labels.count(0)      
     num_ones = all_labels.count(1)
     if num_zeros>=num_ones:
         return 0
