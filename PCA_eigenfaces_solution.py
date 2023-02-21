@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Jul 20 17:04:56 2019
-
-"""
-
 import numpy as np
 import os
 import imageio as io
@@ -12,7 +6,7 @@ import matplotlib.pyplot as plt
 from   sklearn.model_selection import train_test_split
 from   sklearn.decomposition   import PCA
 
-path = r'C:\Users\Lea\Downloads\faces94\faces94'
+path = r'C:\Users\Alexandra\Downloads\faces94\faces94'
 h = 200
 w = 180
 
@@ -23,16 +17,16 @@ def read_images(path):
     y = []
     
     index = 0
-    for root, dirs, files in os.walk(path,topdown=True):   # os.walk= laavor bezura rekursivit be tikia
-        for name in files:                                 # root= nativ, dir= shem tikia, file= shem tmuna
+    for root, dirs, files in os.walk(path,topdown=True):   
+        for name in files:                                 
             full_file = os.path.join(root, name)
-            if full_file.endswith(".jpg"):                 # take only .jpg files     # leorid 3 meimadim le meimad ehad
-                #images[name] = color.rgb2gray(io.imread(full_file)).reshape([1,w*h]) # color.rgb2gray= red, green, blue to gray
-                X.append(color.rgb2gray(io.imread(full_file)).reshape([1,w*h]))       # io=import out, leashtih vektor aroh kdei laavod ito
-                y.append(name)   # shemot tmuna
+            if full_file.endswith(".jpg"):                
+                #images[name] = color.rgb2gray(io.imread(full_file)).reshape([1,w*h]) 
+                X.append(color.rgb2gray(io.imread(full_file)).reshape([1,w*h]))      
+                y.append(name)   
                 index +=1
     X = np.array(X)
-    X = X.squeeze()   # mehapeset meimadim me oreh ehad ve maifa otam mematriza
+    X = X.squeeze()   
     
     return X
 
@@ -45,15 +39,14 @@ def run_sklearn_pca(X_data):
     pca = PCA(n_components=n_components).fit(X_data)
 #    pca = PCA(n_components=n_components,whiten=True,svd_solver='randomized').fit(X_train)
 
-    eigenfaces = pca.components_.reshape([n_components,h,w])  # vektorim azmiim, vektorim mishtahiim zarih laasot reshepe kdei lirot tmunot
+    eigenfaces = pca.components_.reshape([n_components,h,w])  
     
-    eigenface_titles = ["eigenface %d" % i for i in range(eigenfaces.shape[0])]  # print mispar shurot= tmunot
+    eigenface_titles = ["eigenface %d" % i for i in range(eigenfaces.shape[0])]  
 
 #    first_vector_projections = pca.transform(X_data[0].reshape(1,X_data.shape[1]))
-    # lokhim tmun rishona ve matilim ota al matriza:  tozaa pca lakahat tmuna vektor, ve livnot ota mi tmunot basis 
-    first_vector_projections = np.dot((X_data[0]-pca.mean_).reshape(1,X_data.shape[1]),pca.components_.T)  # vector tmuna rishona medata- memuza= hitel = pca.components_
-    reconstructed_img = np.expand_dims(pca.mean_,axis=0) + np.dot(first_vector_projections, eigenfaces.reshape(n_components,w*h)) # hitel al vektor azmiim basis
-    plt.imshow(reconstructed_img.reshape( (h,w)),cmap=plt.cm.gray)                  # mean+V*A(eigenfaces)
+    first_vector_projections = np.dot((X_data[0]-pca.mean_).reshape(1,X_data.shape[1]),pca.components_.T)  
+    reconstructed_img = np.expand_dims(pca.mean_,axis=0) + np.dot(first_vector_projections, eigenfaces.reshape(n_components,w*h)) 
+    plt.imshow(reconstructed_img.reshape( (h,w)),cmap=plt.cm.gray)                 
     plt.show()
     plt.imshow(X_data[0].reshape( (h,w)),cmap=plt.cm.gray)
     plt.show()
@@ -61,22 +54,22 @@ def run_sklearn_pca(X_data):
     plot_gallery(eigenfaces,eigenface_titles,h,w)
 
 def plot_gallery(images,titles,h,w,n_row=2,n_col=4):
-    plt.figure(figsize=(1.8*n_col,2.4*n_row))                              # leadpis akol beyahad
-    plt.subplots_adjust(bottom=0,left=0.01,right=0.99,top=0.9,hspace=0.35) # os revahim be tmuna
+    plt.figure(figsize=(1.8*n_col,2.4*n_row))                              
+    plt.subplots_adjust(bottom=0,left=0.01,right=0.99,top=0.9,hspace=0.35) 
     for i in range(n_row*n_col):
         plt.subplot(n_row,n_col,i+1)
-        plt.imshow(images[i].reshape((h,w)),cmap=plt.cm.gray)              # tmuna le zivonit
+        plt.imshow(images[i].reshape((h,w)),cmap=plt.cm.gray)              
         plt.title(titles[i],size=12)
         plt.xticks(())    
         plt.yticks(())
-    plt.show()            # kol tmuna be nifrad
+    plt.show()            
     
 ##################################################################################################    
 
 def run_pca_linalg(XX):
     
     mean_image = np.mean(XX,axis=0)
-    XX -= mean_image                           # XX tmunot beshurot mehubarot, lekol vektor tmuna memuzaat
+    XX -= mean_image                          
         
 #    Cov = np.dot(XX,XX.transpose())/XX.shape[1]
 #    Cov = np.dot(XX,XX.transpose())/XX.shape[0]
@@ -103,13 +96,13 @@ def run_pca_linalg(XX):
         if eigen_trshehold >= epsilon:
             break
     print(k)
-    eigen_val = eigen_val[:k]    # bohrim ozma rak 90% k arahim azmiim
+    eigen_val = eigen_val[:k]   
     eigen_vec = eigen_vec[:,:k]
         
-    eigen_faces = np.dot(eigen_vec.T,XX)  # eigen_vec * XX(matriza mekorit)= mahzir matriza lezura mekorit kdei le leahpil matriza 36000X36000
+    eigen_faces = np.dot(eigen_vec.T,XX)  
 
-    norm = np.expand_dims(np.linalg.norm(eigen_faces,axis=1),axis=1)   # lenarmel eigen_faces kdei she vektoriim azmiim =||1|| basis ortogonali
-    eigen_faces /= norm                                                # haya 1X5 hofahnu le 5X1
+    norm = np.expand_dims(np.linalg.norm(eigen_faces,axis=1),axis=1)  
+    eigen_faces /= norm                                               
 
     eigenface_titles = ["eigenface %d" % i for i in range(eigen_faces.shape[0])]
          
