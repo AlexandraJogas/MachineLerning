@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-
-
-"""
-@author: Benjamin Kempinski
-
-"""
 import numpy as np
 
 # 1
@@ -15,7 +8,7 @@ def get_sigmoid(x):
     '''
     return 1/(1+np.exp(-x))
 # 2
-def get_sigmoid_derivative(x):  # kan mahnisim tozaa shel sigmoid
+def get_sigmoid_derivative(x):  
     '''
     input: x: array - an array of float numbers
     output: s: array - an array of sigmoid derivateves [s'(x) = s(x)*(1-s(x))].
@@ -23,8 +16,8 @@ def get_sigmoid_derivative(x):  # kan mahnisim tozaa shel sigmoid
     return x*(1-x)
 
 # 3
-np.random.seed(1)                  # seed = ten mispar randomali lefi seder she mahshev tivhar
-w1 = 2*np.random.random((3,3))-1   # kaha magdirim normal standart distribution
+np.random.seed(1)                  
+w1 = 2*np.random.random((3,3))-1  
 w2 = 2*np.random.random((3,1))-1
 
 # 4
