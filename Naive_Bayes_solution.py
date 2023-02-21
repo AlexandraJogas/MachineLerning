@@ -1,17 +1,10 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Aug 18 21:05:57 2018
-
-@author: Lea
-"""
-
 import pandas as  pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 import math
 import os   #operated sistem, sifria notenet efsharut laasot peulot be maarehet afala
 
-path= 'C:\Lea\deep\תרגילים'
+path= 'C:\Alexandra\deep'
 os.chdir(path)  #change dir
 
 #1
