@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Aug 17 11:37:43 2018
-
-@author: Lea
-"""
-
 import matplotlib.pyplot as plt
 from sklearn import datasets,svm,model_selection
 import numpy as np
@@ -28,7 +21,7 @@ artificial_data = np.array([[5,3.1],[4,2.7],[4.6,3.9],[5.8,3]])
 labels_artificial = mySvm.predict(artificial_data)
 
 #question 8
-plt.scatter(artificial_data[:,0], artificial_data[:,1], c=labels_artificial)  # zir x, zir y, c=vector beoreh data, she ekabel zeva
+plt.scatter(artificial_data[:,0], artificial_data[:,1], c=labels_artificial)  
 
 #question 9
 support_vectors = mySvm.support_vectors_
