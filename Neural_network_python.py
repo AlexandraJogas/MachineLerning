@@ -1,7 +1,7 @@
-# Classifier flower Iris for 4 features: Petal_length, Petal_width, Sepal_length, Sepal_width
+# Classifier flower Iris for 4 features: Sepal_length, Sepal_width, Petal_length, Petal_width     x= np.array([ 7.9, 3.1, 7.5, 1.8 ])  
 # Y_Class=['Setosa', 'Versicolor','Virginica']
-# X_Column=[Petal_length, Petal_width, Sepal_length, Sepal_width]
-# h=F(xW+b) ,  x=[x1 x2], W=[w11 w12 w13, w21 w22 w23], b=[b1 b2 b3]
+# X_Column=[Sepal_length, Sepal_width, Petal_length, Petal_width]
+# h=F(xW+b) ,  x=[x1 x2], W=[ w11 w12 w13, w21 w22 w23 ], b=[b1 b2 b3]
 # h1=F(x1w11+x2w21+b1), h2=F(x1w12+x2w22+b2), h3=F(x1w13+x2w23+b3)
 # h=F(xW+b) --> t=xW+b, h=F(t)
 # input layer:  4 neurons  ( X_Colum: Petal_length, Petal_width, Sepal_length, Sepal_widthn)
@@ -15,18 +15,18 @@
 
 import numpy as np
 
-input_dim = 4  #(number of input  x)
-out_dim   = 3  #(number of output y)
-h_dim     = 10 #(number neurons in layer1)
+input_dim = 4      #(number of input  x)       x= np.array([ 7.9, 3.1, 7.5, 1.8 ]) 
+out_dim   = 3      #(number of output y)       Y_Class=['Setosa', 'Versicolor','Virginica']
+h_dim     = 10     #(number neurons in layer1)
 
 
-# Weights temporarily will in random vector from normal distribution, after learning it will 
+# Weights and x temporarily will in random vector from normal distribution, after learning neural network it will learning weights
 
-x = np.random.randn(input_dim)          # random vector from normal distribution
-W1= np.random.randn(input_dimn, h_dimn) # weight matrix for layer1
-b1= np.random.randn(input_dimn, h_dimn) # vector bias= number of neurons in layaer1
-W2= np.random.randn(h_dimn, out_dim)    # weight matrix for layer2
-b1= np.random.randn(out_dim)            # vector bias= number of neurons in layaer2
+x = np.random.randn(input_dim)          # random vector from normal distribution    (1x4)
+W1= np.random.randn(input_dimn, h_dimn) # weight matrix for layer1                  (4x10)
+b1= np.random.randn(input_dimn, h_dimn) # vector bias= number of neurons in layaer1 (1x10)
+W2= np.random.randn(h_dimn, out_dim)    # weight matrix for layer2                  (10x3)
+b2= np.random.randn(out_dim)            # vector bias= number of neurons in layaer2 (1x3)
 
 def_relu(t):
   return np.maximum(t, 0)
@@ -47,3 +47,6 @@ probs=predict(x)                               # (return vector with 3 probabili
 pred_index_class = np.argmax(probs)            # (return index of class vector with maxmimum probability: 0 or 1 or 2)
 Y_Class=['Setosa', 'Versicolor','Virginica'] 
 print('Predicted class' ,  Y_Class[pred_index_class])
+
+
+x= np.array([7.9, 3.1, 7.5, 1.8])   # give features of Iris in x vector
