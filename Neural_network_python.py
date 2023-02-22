@@ -25,8 +25,22 @@ b1= np.random.randn(input_dimn, h_dimn) # vector bias= number of neurons in laya
 W2= np.random.randn(h_dimn, out_dim)    # weight matrix for layer2
 b1= np.random.randn(out_dim)            # vector bias= number of neurons in layaer2
 
+def_relu(t):
+  return np.maximum(t, 0)
+
+def softmax(t):
+  out=np.exp(t)               # vector exponent
+  return  out/np.sum(out)     # vector probabilities:  S(t)=e^ti/sum(e^ti) 
+           
+  
 # Forward Propagation or Inference:
-t1= x @ W1 + b1    # (@=dot, vector x  multiply by matrix W1 + vector b1  is linear function)
-h1= relu(t1)       # (non-linear function)
-
-
+def predict(x):
+    t1= x @ W1 + b1    # (@=dot, vector x multiply by matrix W1 + vector bias b1  is linear function, pass from x to t1)
+    h1= relu(t1)       # (non-linear activation function for t1: give vector t1 --> return vector h1 is neuron in layer1)
+    t2= h1 @ W2 +b2    # (is linear function, pass from h1 to t2 layer2)
+    z=softmax(t2)      # (vector probabilities in function softmax)
+    
+probs=predict(x)                               # (return vector with 3 probabilities   out_dim = 3  number of output y)
+pred_index_class = np.argmax(probs)            # (return index of class vector with maxmimum probability: 0 or 1 or 2)
+Y_Class=['Setosa', 'Versicolor','Virginica'] 
+print('Predicted class' ,  Y_Class[pred_index_class])
