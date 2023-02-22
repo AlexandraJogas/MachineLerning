@@ -19,7 +19,10 @@ input_dim = 4  #(number of input  x)
 out_dim   = 3  #(number of output y)
 h_dim     = 10 #(number neurons in layer1)
 
-x = np.random.randn(input_dim)          # random vector fron normal distribution
+
+# Weights temporarily will in random vector from normal distribution, after learning it will 
+
+x = np.random.randn(input_dim)          # random vector from normal distribution
 W1= np.random.randn(input_dimn, h_dimn) # weight matrix for layer1
 b1= np.random.randn(input_dimn, h_dimn) # vector bias= number of neurons in layaer1
 W2= np.random.randn(h_dimn, out_dim)    # weight matrix for layer2
