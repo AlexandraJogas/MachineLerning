@@ -53,7 +53,7 @@ print('Predicted class' ,  Y_Class[pred_index_class])
 
 x= np.array([7.9, 3.1, 7.5, 1.8])   # give features of Iris in x vector
 
-# this weights after learning our neural network:
+# this weights after learning our neural network: backpropagation, gradient discent
 
 W1 = np.array([[ 0.33462099,  0.10068401,  0.20557238, -0.19043767,  0.40249301, -0.00925352,  0.00628916,  0.74784975,  0.25069956, -0.09290041 ],
                [ 0.41689589,  0.93211640, -0.32300143, -0.13845456,  0.58598293, -0.29140373, -0.28473491,  0.48021000, -0.32318306, -0.34146461 ],
