@@ -78,4 +78,4 @@ b2 =  np.array([-0.16286677,  0.06680119, -0.03563594 ])
 probs=predict(x)                               # (return vector with 3 probabilities   out_dim = 3  number of output y)
 pred_index_class = np.argmax(probs)            # (return index of class vector with maxmimum probability: 0 or 1 or 2)
 Y_Class=['Setosa', 'Versicolor','Virginica'] 
-print('Predicted class' ,  Y_Class[pred_index_class])
+print('Predicted class : ' ,  Y_Class[pred_index_class])  #  Predicted class : Virginica
