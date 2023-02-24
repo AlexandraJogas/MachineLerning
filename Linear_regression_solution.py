@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Mar 29 07:40:06 2019
-
-@author: Dom
-"""
-
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -112,7 +105,7 @@ def ex3():
 # reshape  הוא ווקטור חד מימדי, צרו ממנו ווקטור דו מימדי בעזרת פקודת x=random_floats שימו לב,  
 # h=(Xt*X)^-1 *(Xt*Y)   ​  הוא הפטרון שמגדיר את קבועים של התאמה לינארית h  # 
  
-def regresia(xx,yy):      #mekabel XX-matriza, Y-vektor
+def regresia(xx,yy):            #mekabel XX-matriza, Y-vektor
     assert len(xx.shape) == 2   #pkuda assert im ze le mitkaem ze iten shgia! im matriza mi meymad 2X2
     Xt=xx.transpose()
     XtX_inv=np.linalg.inv(np.dot(Xt,xx))   # h=(Xt*X)^-1 *(Xt*Y)  -ze mishvaot normaliet
