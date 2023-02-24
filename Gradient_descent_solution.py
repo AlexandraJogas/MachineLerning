@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Apr  2 20:17:24 2019
-
-@author: Dom
-"""
-
 """"Normal Equations
 """"
 
@@ -32,7 +25,7 @@ def Chek_reg(X,Y):
     h_reg= The_best_linear_regQ(X,Y)  #--->[Q1,Q2]
     sum_QX =   np.dot(X,h_reg)        #--->sum(X*Q)
     loss   = ((sum_QX-Y)**2).mean()
-    print('h_Regression:', h_reg)  #--> ze kav atama le nekudot (X1,X2)   parametrim h[Q1,Q2]
+    print('h_Regression:', h_reg)            #--> ze kav atama le nekudot (X1,X2)   parametrim h[Q1,Q2]
     print('predicted  y=sum_QX:', sum_QX)
     print('loss:', loss)
     return h_reg
@@ -57,15 +50,15 @@ plt.show()
 # Add to matrix constant feature [1,1,1,1]- this low the loss
 """
 X1=np.ones((4,3))
-X1[:,:-1]=X       # lasim be X1 et X kol shurot, kol amudot me hasof -1
+X1[:,:-1]=X      
 X1
 """
 # matrix with constant bias 4*3
 x_ones=np.ones((4,1))
-X1=np.column_stack((X, x_ones))  #x = np.hstack((ones_vec, x1)) mehaber amudot: noten matriza amudot shel data ve amuda ehadim
+X1=np.column_stack((X, x_ones))  
 h_reg=Chek_reg(X1,Y)             #h_Regression: h[Q1,Q2,Q3]=[-0.64009062  0.8781789 2.24049985]
                                  #predicted y=sum_QX: [1.71762643 6.60026308 9.1294943  7.55261619]
-                                 #loss:  8.524152294650692   yaradim hosafat feature constant                         
+                                 #loss:  8.524152294650692                         
                                 
 # B. One research assistant suggested to another feature: 
 #    The age difference between the siblings i.e. x3 = x1 −x2
@@ -83,7 +76,7 @@ h_reg=Chek_reg(X2,Y)    #h_Regression: Q=[ 0.09375  -0.015625 -0.859375]
 #    If it can calculate the new  θ1 θ2 θ3. if it will not, explain why.
                         
 X3=X1.copy()
-X3[:,2]=(X[:,0]-X[:,1])**2   #osafat amuda 2: (amuda0-amuda1)**2 
+X3[:,2]=(X[:,0]-X[:,1])**2   #add column 2: (col0-col1)**2 
 h_reg=Chek_reg(X3,Y)    #h_Regression: [-8.65644199  9.36076005  0.79598912]
                         #predicted   y=sum_QX: [2.06213797 6.93022643 7.25434439 9.74749868]
                         #loss: 5.2700763559768244  ahi yarad ki ein tlut linyarit bein features x1, x2
