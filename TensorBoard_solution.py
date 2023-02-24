@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-@author: Dom
-"""
+
 # C:\ProgramData\Anaconda3\pythonw.exe 
 # https://www.youtube.com/watch?v=BqgTU7_cBnk&t=2s
 
