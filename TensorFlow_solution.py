@@ -1,8 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-@author: Dom
-"""
-
 ###########   For version TF2.0  #############
 import tensorflow as tf  
 import numpy as np
